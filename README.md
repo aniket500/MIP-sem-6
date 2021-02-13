@@ -1,9 +1,9 @@
-## MIP-sem-6
+# MIP-sem-6
 This is an app created for somaiya students and teachers where they can post their doubts / queries, answer / comment on other people posts, etc.
 
 This app also has a text summarizer which will summarize your notes for last minute revision.
 
-## Developers:
-# Viraj Doshi
-# Vartika Gupta
-# Aniket Joshi
+# Developers:
+## Viraj Doshi
+## Vartika Gupta
+## Aniket Joshi
