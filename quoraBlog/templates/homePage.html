@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Somaiya Quora</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
     <h1>This is the home page</h1>
     <h2>Vartika & aniket start the work !!!!!!!!!!!!!!</h2>
-</body>
-</html>
+    <br>
+    {% for post in keyPosts %}
+        <h2>{{ post.title }}</h2>
+        <p>By {{ post.author }} on {{ post.date }}</p>
+        <p>{{ post.content }}</p>
+    {% endfor %}
+{% endblock content %}
