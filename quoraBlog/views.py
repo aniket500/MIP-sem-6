@@ -16,12 +16,12 @@ posts = [
     }
 ]
 
-def home(req):
-    context = {
-        'keyPosts': posts,
-        'title': 'Qoura',
-    }
-    return render(req, 'homePage.html', context)
-    
-def about(req):
-    return render(req, 'about.html', {})
+def login(request):
+    return render(request, 'login_ui.html')
+
+def home(request):
+    # context = {
+    #     'keyPosts': posts,
+    #     'title': 'Qoura',
+    # }
+    return render(request, 'home_ui.html')
