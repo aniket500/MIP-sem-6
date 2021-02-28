@@ -25,3 +25,6 @@ def home(request):
     #     'title': 'Qoura',
     # }
     return render(request, 'home_ui.html')
+
+def profile(request):
+    return render(request, 'profile.html')
