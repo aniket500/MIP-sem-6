@@ -16,6 +16,9 @@ posts = [
     }
 ]
 
+def login_page(request):
+    return render(request, 'login_ui.html')
+
 def login(request):
     context = {
         'keyPosts': Post.objects.all()
@@ -27,7 +30,7 @@ def home(request):
     #     'keyPosts': posts,
     #     'title': 'Qoura',
     # }
-    return render(request, 'home_ui.html')
+    return render(request, 'index.html')
 
 def profile(request):
     return render(request, 'profile.html')
