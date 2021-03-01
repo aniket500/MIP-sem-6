@@ -8,6 +8,3 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     User.username = 'Viraj'
-
-#username = Viraj
-# password = mippassword
