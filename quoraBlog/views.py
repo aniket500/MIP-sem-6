@@ -35,5 +35,8 @@ def home(request):
 def profile(request):
     return render(request, 'profile.html')
 
+def blogs(request):
+    return render(request, 'blogs.html')
+
 def txt_sum(request):
     return render(request, 'txt_sum.html')
