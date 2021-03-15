@@ -133,6 +133,7 @@
                     <img src="{% static 'img/fb.png' %}" alt="fbicon">
                     <img src="{% static 'img/gp.png' %}" alt="gpicon">
                 </div> -->
+                {% block content %}
                 <form id="login" method="POST" class="input-group">
                     {% csrf_token %}
                     <div type="text" class="input-field" placeholder="User Id" required>
@@ -153,7 +154,7 @@
                     </div>
                     <br><br>
                     
-
+                    {% endblock content %}
 
                     <button type="submit" class="submit-btn">Register</button>                    
                 </form>
