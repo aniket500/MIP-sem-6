@@ -17,7 +17,7 @@
         }
         
         .form-box{
-            width: 420px;
+            width: 380px;
             height: 480px;
             position: relative;
             margin: 6% auto;
@@ -68,9 +68,9 @@
         }
         
         .input-group{
-            top: 150px;
+            top: 180px;
             position: absolute;
-            width: 320px;
+            width: 280px;
             transition: .5s;
         }
         
@@ -82,7 +82,7 @@
             border-top: 0;
             border-right: 0;
             border-bottom: 1px solid #999;
-            outline-style: none;
+            outline: none;
             background: transparent;
         }
         
@@ -120,59 +120,53 @@
     <head>
         <title>Somaiya Quora login</title>
         <!-- <link rel="stylesheet" type="text/css" href="{% static 'static/css/login.css' %}"> -->
+        <!-- what does that above import do Vartika, coz after removing that it worked -->
     </head>
     <body>
         <div class="hero">
             <div class="form-box">
                 <div class="button-box">
                     <div id="btn"></div>
-                    <button type="button" class="toggle-btn" onclick="login()">Register</button>
-                    <button type="button"  class="toggle-btn" onclick="register()">Login</button>
+                    <button type="button" class="toggle-btn" onclick="login()" style="left: 7px;">Login</button>
+                    <button type="button" class="toggle-btn" onclick="register()" style="left: 13px;">Register</button>
                 </div>
                 <!-- <div class="social-icons">
                     <img src="{% static 'img/fb.png' %}" alt="fbicon">
                     <img src="{% static 'img/gp.png' %}" alt="gpicon">
                 </div> -->
-                {% block content %}
-                <form id="login" method="POST" class="input-group">
+                <form id="login" class="input-group">
+                    <input type="text" class="input-field" placeholder="User Id" required>
+                    <input type="text" class="input-field" placeholder="Enter Password" required>
+                    <input type="checkbox" class="check-box"><span>Remember Password</span>
+                    <button type="submit" class="submit-btn">Login</button>                    
+                </form>
+                <form id="register" class="input-group">
                     {% csrf_token %}
-                    <div type="text" class="input-field" placeholder="FirstName" required>
-                        {{form.first_name.label}}
-                        {{form.first_name}}
-                    </div>
-                    <div type="text" class="input-field" placeholder="LastName" required>
-                        {{form.last_name.label}}
-                        {{form.last_name}}
-                    </div>
-                    <div type="text" class="input-field" placeholder="User Id" required>
+                    <input type="text" class="input-field" placeholder="User Id" required>
+                    <div class="input-field" id="registerInput">
                         {{form.username.label}}
                         {{form.username}}
                     </div>
-                    <div type="text" class="input-field" placeholder="Email" required>
-                        {{form.email.label}}
+                    <input type="email" class="input-field" placeholder="Email Id" required>
+                    <!-- <div class="input-field">
                         {{form.email}}
-                    </div>
-                    <div type="text" class="input-field" placeholder="Password" required>
-                        {{form.password1.label}}
+                    </div> -->
+                    <input type="text" class="input-field" placeholder="Enter Password" required>
+                    <!-- <div class="input-field">
                         {{form.password1}}
-                    </div>
-                    <div type="text" class="input-field" placeholder="Confirm Password" required>
-                        {{form.password2.label}}
-                        {{form.password2}}
-                    </div>
-                    <br><br>
-                    
-                    {% endblock content %}
-
+                    </div> -->
+                    <input type="checkbox" class="check-box"><span>I agree to terms and conditions</span>
                     <button type="submit" class="submit-btn">Register</button>                    
                 </form>
-                
             </div>
         </div>
-        <!-- <script>
+        <script>
             var x = document.getElementById("login");
             var y = document.getElementById("register");
             var z = document.getElementById("btn");
+            var username = document.getElementById("registerInput");
+
+            username.placeholder="userNae..."
 
             function register(){
                 x.style.left = "-400px";
@@ -186,8 +180,6 @@
                 z.style.left = "0px";
             }
 
-        </script> -->
+        </script>
     </body>
 </html>
-
-

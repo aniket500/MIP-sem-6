@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Post
+from django.views.generic import CreateView
 
 posts = [
     {
@@ -40,3 +41,10 @@ def blogs(request):
 
 def txt_sum(request):
     return render(request, 'txt_sum.html')
+
+class PostCreateView(CreateView):
+    model= Post
+    fields =['title', 'content']
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
