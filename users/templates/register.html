@@ -119,7 +119,7 @@
     </style>
     <head>
         <title>Somaiya Quora login</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'static/css/login.css' %}">
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'static/css/login.css' %}"> -->
     </head>
     <body>
         <div class="hero">
@@ -136,6 +136,14 @@
                 {% block content %}
                 <form id="login" method="POST" class="input-group">
                     {% csrf_token %}
+                    <div type="text" class="input-field" placeholder="FirstName" required>
+                        {{form.first_name.label}}
+                        {{form.first_name}}
+                    </div>
+                    <div type="text" class="input-field" placeholder="LastName" required>
+                        {{form.last_name.label}}
+                        {{form.last_name}}
+                    </div>
                     <div type="text" class="input-field" placeholder="User Id" required>
                         {{form.username.label}}
                         {{form.username}}
