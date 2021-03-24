@@ -42,11 +42,15 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'profile' %}">Profile</a></li>
-          <li><a href="{% url 'blogs' %}">Blogs</a></li>
-          <li><a href="{% url 'txt_sum' %}">TxtSum</a></li>
-          <li><a href="{% url 'login' %}" >Login</a></li>
+          <li class="active"><a href=#>Home</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'blogs' %}">Blogs</a></li>
+            <li><a href="{% url 'post-create' %}">Posts</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}" >Login</a></li>
+          {% endif %}
         </ul>
       </nav><!-- .nav-menu -->
 

@@ -72,8 +72,10 @@
    
     <form action="/txt_sum/" method="post">
       {% csrf_token %}
-      {{form.as_p}}
-
+      <div type="text" id="name" name="name" size="75" style="position: fixed; top: 30%; left: 50%; transform: translate(-50%,-50%);">
+        {{form.input1}}
+      </div><br><br>
+     
     <br><br>
     <input type="submit" style="position: fixed; top: 35%; left: 50%; transform: translate(-50%,-50%);">
     </form>
@@ -82,9 +84,12 @@
     <div style="text-align: center;">
       Your summarised text is:
     </div>
-    {% block content %}  {{summary}} {% endblock content %}
+    {% block content %}
+    <div style="text-align: center;">
+      {{summary}} 
+    </div>
+     {% endblock content %}
     <br>
-    <input type="text" id="name" name="name" requiredminlength="4" maxlength="8" size="75" style="position: fixed; top: 30%; left: 50%; transform: translate(-50%,-50%);">
 
 
 

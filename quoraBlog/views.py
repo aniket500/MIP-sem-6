@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Post
 from django.views.generic import CreateView
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 import requests
 from .forms import TextInput
 
@@ -36,6 +37,7 @@ def home(request):
     # }
     return render(request, 'index.html')
 
+@login_required
 def profile(request):
     return render(request, 'profile.html')
 
@@ -43,6 +45,7 @@ def blogs(request):
     return render(request, 'blogs.html')
 
 def txt_sum(req):
+    summary=''
     #fulltext = request.POST.get('text_inp','')
     if(req.method == 'POST'):
         form = TextInput(req.POST)
@@ -54,7 +57,7 @@ def txt_sum(req):
                 data={
                     'text': n,
                 },
-                headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}
+                headers={'api-key': 'd45f7c67-f01d-44e9-9615-335b2d3ba0b9'}
                 )
             a=r.json()
             summary=a['output']
