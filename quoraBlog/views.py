@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Post
 from django.views.generic import CreateView
+import requests
 
 posts = [
     {
@@ -40,11 +41,14 @@ def blogs(request):
     return render(request, 'blogs.html')
 
 def txt_sum(request):
-    return render(request, 'txt_sum.html')
+    r = requests.get("https://api.deepai.org/api/summarization").json()
+
+    return render(request, 'txt_sum.html',{'response':r, 'data':data})
 
 class PostCreateView(CreateView):
     model= Post
-    fields =['title', 'content']
+    fields =['title', 'content',]
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+

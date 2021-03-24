@@ -5,8 +5,7 @@ from .views import PostCreateView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.login_page, name='login_page'),
-    path('home/', views.home, name='home'),
+    path('', views.home, name='home'),
     path('profile/',views.profile, name='profile'),
     path('register/', user_views.register, name='register'),
     path('test/', views.login, name='login'),

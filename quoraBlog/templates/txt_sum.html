@@ -69,9 +69,11 @@
     <div style="text-align: center;">
         Please input your text here
     </div>
+    {% csrf_token %}
     
 
     <input type="text" id="name" name="name" requiredminlength="4" maxlength="8" size="75" style="position: fixed; top: 30%; left: 50%; transform: translate(-50%,-50%);">
+    {{response}}
     <br><br>
     <input type="submit" style="position: fixed; top: 35%; left: 50%; transform: translate(-50%,-50%);">
     <br><br>
