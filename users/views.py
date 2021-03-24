@@ -10,7 +10,7 @@ def register(req):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(req, f'Account created for {username}!')
-            return redirect('home')
+            return redirect('login')
     else:
         form = UserRegisteration()
     return render(req, 'register.html', {'form': form})
