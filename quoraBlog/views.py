@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import Post
 from django.views.generic import CreateView
+from django.http import HttpResponse
 import requests
+from .forms import TextInput
 
 posts = [
     {
@@ -40,14 +42,30 @@ def profile(request):
 def blogs(request):
     return render(request, 'blogs.html')
 
-def txt_sum(request):
-    r = requests.get("https://api.deepai.org/api/summarization").json()
-
-    return render(request, 'txt_sum.html',{'response':r, 'data':data})
+def txt_sum(req):
+    #fulltext = request.POST.get('text_inp','')
+    if(req.method == 'POST'):
+        form = TextInput(req.POST)
+        if (form.is_valid()):
+            n = form.cleaned_data.get('input1')
+            
+            r = requests.post(
+                "https://api.deepai.org/api/summarization",
+                data={
+                    'text': n,
+                },
+                headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}
+                )
+            a=r.json()
+            summary=a['output']
+    else:
+        form = TextInput()
+    return render(req, 'txt_sum.html',{'form': form, 'summary':summary})
 
 class PostCreateView(CreateView):
     model= Post
     fields =['title', 'content',]
+    success_url ='/blogs'
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
