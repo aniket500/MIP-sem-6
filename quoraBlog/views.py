@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Post
 from django.views.generic import CreateView
+from django.contrib.auth.decorators import login_required
 import requests
 
 posts = [
@@ -34,6 +35,7 @@ def home(request):
     # }
     return render(request, 'index.html')
 
+@login_required
 def profile(request):
     return render(request, 'profile.html')
 
