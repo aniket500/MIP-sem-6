@@ -6,8 +6,10 @@ from .forms import UserRegisteration
 def register(req):
     if(req.method == 'POST'):
         form = UserRegisteration(req.POST)
-        if (form.is_valid()):
+        if (form.is_valid() and str(form.cleaned_data.get('email')).find('somaiya.edu') != -1):
             form.save()
+            print(form.cleaned_data.get('email'))
+            print(str(form.cleaned_data.get('email')).find('somaiya.edu'))
             username = form.cleaned_data.get('username')
             messages.success(req, f'Account created for {username}!')
             return redirect('home')
