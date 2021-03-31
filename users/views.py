@@ -12,7 +12,7 @@ def register(req):
             print(str(form.cleaned_data.get('email')).find('somaiya.edu'))
             username = form.cleaned_data.get('username')
             messages.success(req, f'Account created for {username}!')
-            return redirect('home')
+            return redirect('login')
     else:
         form = UserRegisteration()
     return render(req, 'register.html', {'form': form})

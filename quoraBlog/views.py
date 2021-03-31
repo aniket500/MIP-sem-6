@@ -61,6 +61,7 @@ def txt_sum(req):
                 )
             a=r.json()
             summary=a['output']
+            print(summary)
     else:
         form = TextInput()
     return render(req, 'txt_sum.html',{'form': form, 'summary':summary})

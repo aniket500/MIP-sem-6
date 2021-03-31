@@ -42,55 +42,147 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'profile' %}">Profile</a></li>
-          <li><a href="{% url 'blogs' %}">Blogs</a></li>
-          <li class="active"><a href="{% url 'txt_sum' %}">TxtSum</a></li>
+          <li class="active"><a href="{% url 'home' %}"></a>Home</a></li>
 
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'blogs' %}">Blogs</a></li>
+            <li><a href="{% url 'post-create' %}">Post</a></li>
+            <li ><a href="{% url 'txt_sum' %}">TxtSum</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}" >Login</a></li>
+            <li><a href="{% url 'register' %}" >Register</a></li>
+          {% endif %}
         </ul>
       </nav><!-- .nav-menu -->
 
-      <a href="courses.html" class="get-started-btn">Logout</a>
 
     </div>
   </header><!-- End Header -->
-  <main id="main">
+  <main id="main" data-aos="fade-in">
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
-        <h2>Welcome to your Profile</h2>
-        <p>Let your peers know what your interests and hobbies are! </p>
+        <h2>Introducing the Text Summariser</h2>
+        <p>Make quick notes of your texts!</p>
       </div>
     </div><!-- End Breadcrumbs -->
     <div class="box">
 
     </div>
-
+    <br><br>
     <div style="text-align: center;">
         Please input your text here
     </div>
+    <br>
    
     <form action="/txt_sum/" method="post">
       {% csrf_token %}
-      <div type="text" id="name" name="name" size="75" style="position: fixed; top: 30%; left: 50%; transform: translate(-50%,-50%);">
+      <div type="text" id="name" name="name" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);">
         {{form.input1}}
-      </div><br><br>
+      </div><br>
      
-    <br><br>
-    <input type="submit" style="position: fixed; top: 35%; left: 50%; transform: translate(-50%,-50%);">
+      <div>
+
+        <input type="submit" style="position: fixed; top: 70%; left: 50%; transform: translate(-50%,-50%);">
+
+      </div>
     </form>
 
-    <br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <div style="text-align: center;">
       Your summarised text is:
     </div>
-    {% block content %}
+    <br><br>
     <div style="text-align: center;">
       {{summary}} 
     </div>
-     {% endblock content %}
-    <br>
+     
+    <br><br><br><br><br><br><br>
+</main>
 
+<!--<footer id="footer">
+
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h3>Somiya Quora</h3>
+          <p>
+            KJ Somaiya College of Engineering <br>
+            Ghatkopar, Mumbai<br>
+            Maharashtra <br><br>
+            <strong>Phone:</strong> +1 5589 55488 55<br>
+            <strong>Email:</strong> info@example.com<br>
+          </p>
+        </div>
+
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Profile</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Blogs</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Logout</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Our Communities</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Computer</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Information Technology</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Electronics</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Electronics and Tele Communications</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Mechanical</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container d-md-flex py-4">
+
+    <div class="mr-md-auto text-center text-md-left">
+      <div class="copyright">
+      
+      </div>
+      <div class="credits">
+       
+      </div>
+    </div>
+    <div class="social-links text-center text-md-right pt-3 pt-md-0">
+      <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+      <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+      <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+      <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+    </div>
+  </div>
+</footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
 
 
 
