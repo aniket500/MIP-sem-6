@@ -68,7 +68,7 @@ def txt_sum(req):
 
 class PostCreateView(CreateView):
     model= Post
-    fields =['title', 'content',]
+    fields =['title', 'content','group']
     success_url ='/blogs'
     def form_valid(self, form):
         form.instance.author = self.request.user
