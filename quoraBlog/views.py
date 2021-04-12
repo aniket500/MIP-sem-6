@@ -6,21 +6,6 @@ from django.contrib.auth.decorators import login_required
 import requests
 from .forms import TextInput
 
-posts = [
-    {
-        'author': 'Abc',
-        'title': 'Post 1',
-        'content': 'This is the first post',
-        'date': '14 Feb, 2021',
-    },
-    {
-        'author': 'Xyz',
-        'title': 'Post 2',
-        'content': 'Hey Abc are you single ?',
-        'date': 'Yes',
-    }
-]
-
 def login_page(request):
     return render(request, 'login_ui.html')
 
@@ -42,7 +27,10 @@ def profile(request):
     return render(request, 'profile.html')
 
 def blogs(request):
-    return render(request, 'blogs.html')
+    context = {
+        'allPosts': Post.objects.all()
+    }
+    return render(request, 'blogs.html', context)
 
 def txt_sum(req):
     summary=''
