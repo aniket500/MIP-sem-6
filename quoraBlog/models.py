@@ -17,6 +17,7 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     group = models.ForeignKey(Community, on_delete= models.CASCADE,null=True, blank=True)
+    reports= models.ManyToManyField(User, related_name='blog_post')
     User.username = 'Viraj' 
 
     def __str__(self):
