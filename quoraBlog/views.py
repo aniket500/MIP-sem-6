@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from .models import Post
-from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 import requests
@@ -72,11 +73,36 @@ def txt_sum(req):
         form = TextInput()
     return render(req, 'txt_sum.html',{'form': form, 'summary':summary})
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model= Post
     fields =['title', 'content','group']
-    success_url ='/blogs'
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+class PostDetailView(LoginRequiredMixin, DetailView):
+    model = Post
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    success_url = '/blogs'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False

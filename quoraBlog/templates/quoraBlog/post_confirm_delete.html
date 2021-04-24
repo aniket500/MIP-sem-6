@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -26,7 +27,7 @@
   <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/blogs.css' %}">
 
 </head>
 
@@ -42,12 +43,16 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li><a href="{% url 'profile' %}">Profile</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">Profile</a></li>
             <li><a href="{% url 'blogs' %}">Blogs</a></li>
-            <li><a href="{% url 'post-create' %}">Post</a></li>
+            <li class="active"><a href="{% url 'post-create' %}">Post</a></li>
             <li ><a href="{% url 'txt_sum' %}">TxtSum</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
-
+          {% else %}
+            <li><a href="{% url 'login' %}" >Login</a></li>
+            <li><a href="{% url 'register' %}" >Register</a></li>
+          {% endif %}
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -55,73 +60,39 @@
     </div>
   </header><!-- End Header -->
 
-  <main id="main">
+  <main id="main" data-aos="fade-in">
+
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs" data-aos="fade-in">
+    <div class="breadcrumbs">
       <div class="container">
-        <h2>Welcome to your Profile</h2>
-        <p>Let your peers know what your interests and hobbies are! </p>
+        <h2>Delete Post</h2>
+        <!-- <p>The blogs relevant to this community! </p> -->
       </div>
     </div><!-- End Breadcrumbs -->
+<center>
+    <div style="padding: 80px;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <fieldset>
+                <legend>
+                    <h2>
+                        Are you sure you want to delete the post "{{ object.title }}"?
+                    </h2>
+                </legend>
+            </fieldset>
 
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
+            <div style="padding: 80px;">
+                <button class="btn btn-danger btn-sm mt-1 mb-1" type="submit">Delete</button>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-detail' object.id%}">Cancel</a>
 
-        <div class="row">
-          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-            <img src="{% static 'img/about.jpg' %}" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-            <h3>Who is {{ user.username }}?</h3>
-            <p class="font-italic">
-              Name- {{ user.profile.user }}<br>
-              Email- {{ user.email }}
-            </p>
-            <p class="font-italic">
-              {{ user.profile.bio }}
-            </p>
-            {% block content %}
-            <form method="POST" enctype="multipart/form-data">
-              {% csrf_token %}
-              <fieldset class="form-group">
-                {{ u_form.as_p }}
-                {{ p_form.as_p }}
-              </fieldset>
-              <div class="form-group">
-                <button class="btn btn-secondary btn-sm mt-1 mb-1" type="submit">Update Information</button>
-              </div>
-            </form>
-            {% endblock content %}
-
-
-            
-          </div>
-        </div>
-      </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts section-bg">
-      <div class="container">
-
-        <div class="row counters">
-
-          <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">12</span>
-            <p>Number of blogs posted</p>
-          </div>
-
-          
-        </div>
-
-      </div>
-    </section><!-- End Counts Section -->
-
-    
+            </div>
+        </form>
+        
+    </div>
+</center>
   </main><!-- End #main -->
 
- <!-- ======= Footer ======= -->
+  <!-- ======= Footer ======= -->
 <footer id="footer">
 
   <div class="footer-top">
@@ -135,17 +106,17 @@
             Ghatkopar, Mumbai<br>
             Maharashtra <br><br>
             <strong>Phone:</strong> +1 5589 55488 55<br>
-            <strong>Email:</strong> abc@somaiya.edu<br>
+            <strong>Email:</strong> info@example.com<br>
           </p>
         </div>
 
         <div class="col-lg-2 col-md-6 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'home' %}">Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'profile' %}">Profile</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'blogs' %}">Blogs</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'logout' %}">Logout</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Profile</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Blogs</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Logout</a></li>
           </ul>
         </div>
 
@@ -183,21 +154,22 @@
     </div>
   </div>
 </footer><!-- End Footer -->
+
   <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
   <div id="preloader"></div>
 
- <!-- Vendor JS Files -->
- <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
- <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
- <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
- <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
- <script src="{% static 'vendor/waypoints/jquery.waypoints.min.js' %}"></script>
- <script src="{% static 'vendor/counterup/counterup.min.js' %}"></script>
- <script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
- <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
 
- <!-- Template Main JS File -->
- <script src="{% static 'js/main.js' %}"></script>
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
 
 </body>
 
