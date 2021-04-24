@@ -14,4 +14,9 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('blogs/', views.blogs, name='blogs'),
+    path('blogs/Computer/', views.computers, name='Computers'),
+    path('blogs/Mechanical', views.mech, name='Mechanical'),
+    path('blogs/Information-Technology', views.it, name='Information-Technology'),
+    path('blogs/Electronics-TeleCom', views.extc, name='Electronics-TeleCom'),
+    path('blogs/Electronics', views.etrx, name='Electronics')
 ]

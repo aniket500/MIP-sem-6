@@ -28,9 +28,45 @@ def profile(request):
 
 def blogs(request):
     context = {
-        'allPosts': Post.objects.all()
+        'allPosts': Post.objects.all(),
+        'commList': ['Computer', 'Information-Technology', 'Mechanical', 'Electronics-TeleCom', 'Electronics'],
     }
     return render(request, 'blogs.html', context)
+
+def computers(req):
+    context = {
+        'community': 'Computer Engineering',
+        'commPost': list(Post.objects.all()),
+    }
+    return render(req, 'computers.html', context)
+
+def mech(req):
+    context = {
+        'community': 'Mechanical',
+        'commPost': list(Post.objects.all()),
+    }
+    return render(req, 'computers.html', context)
+
+def it(req):
+    context = {
+        'community': 'Information Technology',
+        'commPost': list(Post.objects.all()),
+    }
+    return render(req, 'computers.html', context)
+
+def extc(req):
+    context = {
+        'community': 'Electronics and Telecommunications',
+        'commPost': list(Post.objects.all()),
+    }
+    return render(req, 'computers.html', context)
+
+def etrx(req):
+    context = {
+        'community': 'Electronics',
+        'commPost': list(Post.objects.all()),
+    }
+    return render(req, 'computers.html', context)
 
 def txt_sum(req):
     summary=''
