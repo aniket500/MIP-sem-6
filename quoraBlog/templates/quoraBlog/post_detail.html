@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,13 +43,16 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li><a href="{% url 'profile' %}">Profile</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">Profile</a></li>
             <li><a href="{% url 'blogs' %}">Blogs</a></li>
-            <li><a href="{% url 'post-create' %}">Post</a></li>
+            <li class="active"><a href="{% url 'post-create' %}">Post</a></li>
             <li ><a href="{% url 'txt_sum' %}">TxtSum</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
-
-
+          {% else %}
+            <li><a href="{% url 'login' %}" >Login</a></li>
+            <li><a href="{% url 'register' %}" >Register</a></li>
+          {% endif %}
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -61,60 +65,46 @@
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
       <div class="container">
-        <h2>Blogs</h2>
-        <p>Blogs of All Communities</p>
+        <h2>Blog details</h2>
+        <!-- <p>The blogs relevant to this community! </p> -->
       </div>
     </div><!-- End Breadcrumbs -->
-
-    <!-- ======= Courses Section ======= -->
     <section id="courses" class="courses">
       <div class="container" data-aos="fade-up">
 
-        <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          {% for comm in commList %}
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="course-item" style="margin-bottom: 12px;">
-              <a href={{comm}}>
-                <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
-              <div class="course-content">
-                  <h4>{{ comm }}</h4>
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">      
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="course-item">
+            <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
+            <div class="course-content">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4>{{ post.group }}</h4>
               </div>
-              </a>
+
+              <h3><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
+              <p>{{ post.content }}</p>
+              <div class="trainer d-flex justify-content-between align-items-center">
+                <div class="trainer-profile d-flex align-items-center">
+                  <img src="{% static 'img/trainer-1.jpg' %}" class="img-fluid" alt="">
+                  <span>{{ post.author }}</span>
+                </div>
+                <div class="trainer-rank d-flex align-items-center">
+                  <i class="bx bx-user"></i>&nbsp;50
+                  &nbsp;&nbsp;
+                  <i class="bx bx-heart"></i>&nbsp;65
+                </div>
+              </div>
             </div>
           </div>
-          {% endfor %}
         </div>
-
-        <!-- <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          {% for post in allPosts %}
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="course-item" style="margin-bottom: 12px;">
-              <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
-              <div class="course-content">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4>{{ post.group }}</h4>
-                </div>
-
-                <h3><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
-                <p>{{ post.content }}</p>
-                <div class="trainer d-flex justify-content-between align-items-center">
-                  <div class="trainer-profile d-flex align-items-center">
-                    <img src="{% static 'img/trainer-1.jpg' %}" class="img-fluid" alt="">
-                    <span>{{ post.author }}</span>
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bx bx-user"></i>&nbsp;50
-                    &nbsp;&nbsp;
-                    <i class="bx bx-heart"></i>&nbsp;65
-                  </div>
-                </div>
-              </div>
-            </div>
+        
+        {% if object.author == user %}
+          <div style="padding: 20px;">
+            <a class="btn btn-secondary btn-sm mt-1 mb-1"  href="{% url 'post-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
           </div>
-          {% endfor %}
-        </div> -->
-      </div>
-    </section><!-- End Courses Section -->
+        {% endif %} 
+    </div>
 
   </main><!-- End #main -->
 
@@ -139,8 +129,8 @@
         <div class="col-lg-2 col-md-6 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href={{home}}>Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href={{profile}}>Profile</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Profile</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#">Blogs</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#">Logout</a></li>
           </ul>

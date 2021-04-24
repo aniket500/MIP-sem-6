@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 # from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import UserRegisteration
+from .forms import UserRegisteration, UserUpdateForm, ProfileUpdateForm
 from django.core.mail import send_mail
 from django.conf import settings
 
