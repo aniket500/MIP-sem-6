@@ -65,8 +65,7 @@
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
       <div class="container">
-        <h2>Create a Post</h2>
-        <!-- <p>The blogs relevant to this community! </p> -->
+        <h2>Add a Comment</h2>
       </div>
     </div><!-- End Breadcrumbs -->
 
@@ -78,8 +77,19 @@
                     Type it out!
                     <br>
                 </legend>
-                {{ form.as_p }}
+                <!-- {% if not user.is_authenticated %}
+                    {{ form.name.label }}
+                    {{ form.name }}
+                {% endif %} -->
+                <br>
+                {{ form.name.label }}
+                {{ form.name }}
+                <br><br>
+                {{ form.content.label }}
+                {{ form.content }}
+                <!-- {{ form.as_p }} -->
             </fieldset>
+            <br>
             <div>
                 <button type="submit">Post</button>
             </div>
