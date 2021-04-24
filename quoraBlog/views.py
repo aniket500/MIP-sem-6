@@ -1,10 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from .models import Post
 from django.views.generic import CreateView
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 import requests
+from django.contrib import messages
 from .forms import TextInput
+from users.forms import UserRegisteration, UserUpdateForm, ProfileUpdateForm
+
 
 def login_page(request):
     return render(request, 'login_ui.html')
@@ -24,7 +27,22 @@ def home(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    if request.method =='POST':
+        u_form=UserUpdateForm(request.POST, instance=request.user)
+        p_form=ProfileUpdateForm(request.POST, instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your profile was updated successfully!')
+            return HttpResponseRedirect(reverse('profile'))
+    else:
+        u_form=UserUpdateForm(instance=request.user)
+        p_form=ProfileUpdateForm(instance=request.user.profile)
+    context ={
+        'u_form': u_form,
+        'p_form': p_form
+    }
+    return render(request, 'profile.html',context)
 
 def blogs(request):
     context = {
