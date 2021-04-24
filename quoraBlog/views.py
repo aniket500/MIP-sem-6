@@ -55,10 +55,9 @@ def txt_sum(req):
     return render(req, 'txt_sum.html',{'form': form, 'summary':summary})
 
 class PostCreateView(CreateView):
-    model= Post
-    fields =['title', 'content','group']
-    success_url ='/blogs'
+    model = Post
+    fields = ['title', 'content','group']
+    success_url = '/blogs'
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-
