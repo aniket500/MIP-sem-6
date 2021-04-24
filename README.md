@@ -4,6 +4,6 @@ This is an app created for somaiya students and teachers where they can post the
 This app also has a text summarizer which will summarize your notes for last minute revision.
 
 # Developers:
-## Viraj Doshi
+## [Viraj Doshi](https://www.github.com/virajdoshi11)
 ## Vartika Gupta
 ## Aniket Joshi
