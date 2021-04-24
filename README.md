@@ -5,5 +5,5 @@ This app also has a text summarizer which will summarize your notes for last min
 
 # Developers:
 ## [Viraj Doshi](https://www.github.com/virajdoshi11)
-## Vartika Gupta
-## Aniket Joshi
+## [Vartika Gupta](https://www.github.com/Vartikag24)
+## [Aniket Joshi](https://www.github.com/aniket500)
