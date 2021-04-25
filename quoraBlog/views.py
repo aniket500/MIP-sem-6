@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect, reverse
-from .models import Post
+from .models import Post, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 import requests
 from django.contrib import messages
-from .forms import TextInput
+from .forms import TextInput, AddComment
 from users.forms import UserRegisteration, UserUpdateForm, ProfileUpdateForm
+from django.urls import reverse_lazy
 
 
 def login_page(request):
@@ -142,3 +143,13 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = AddComment
+    template_name = 'addComment.html'
+    success_url = reverse_lazy('blogs')
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)

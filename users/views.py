@@ -14,13 +14,13 @@ def register(req):
             form.save()
             print(form.cleaned_data.get('email'))
             print(str(form.cleaned_data.get('email')).find('somaiya.edu'))
-            send_mail(
-                'Verify your account',
-                'Open this link to verify your account',
-                settings.EMAIL_HOST_USER,
-                [str(form.cleaned_data.get('email'))],
-                # fail_silently=False,
-            )
+            # send_mail(
+            #     'Verify your account',
+            #     'Open this link to verify your account',
+            #     settings.EMAIL_HOST_USER,
+            #     [str(form.cleaned_data.get('email'))],
+            #     # fail_silently=False,
+            # )
             username = form.cleaned_data.get('username')
             messages.success(req, f'Account created for {username}!')
             return redirect('login')

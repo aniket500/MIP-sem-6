@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from users import views as user_views
-from .views import PostCreateView, PostDetailView, PostUpdateView, PostDeleteView
+from .views import PostCreateView, PostDetailView, PostUpdateView, PostDeleteView, AddCommentView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -21,5 +21,6 @@ urlpatterns = [
     path('blogs/Mechanical', views.mech, name='Mechanical'),
     path('blogs/Information-Technology', views.it, name='Information-Technology'),
     path('blogs/Electronics-TeleCom', views.extc, name='Electronics-TeleCom'),
-    path('blogs/Electronics', views.etrx, name='Electronics')
+    path('blogs/Electronics', views.etrx, name='Electronics'),
+    path('post/<int:pk>/comment', AddCommentView.as_view(), name='addComment')
 ]
