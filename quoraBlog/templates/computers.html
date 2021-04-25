@@ -39,13 +39,14 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">Profile</a></li>
-          <li class="active"><a href="courses.html">Blogs</a></li>
-          <li><a href="{% url 'post-create' %}">Post</a></li>
-          <li ><a href="{% url 'txt_sum' %}">TxtSum</a></li>
-          <li><a href="{% url 'logout' %}">Logout</a></li>
-
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li class="active"><a href="{% url 'blogs' %}">Blogs</a></li>
+            <li ><a href="{% url 'post-create' %}">Post</a></li>
+            <li ><a href="{% url 'txt_sum' %}">TxtSum</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% endif %}
 
         </ul>
       </nav><!-- .nav-menu -->
@@ -84,11 +85,7 @@
                       <img src="{% static 'img/trainer-1.jpg' %}" class="img-fluid" alt="">
                       <span>{{ post.author }}</span>
                     </div>
-                    <div class="trainer-rank d-flex align-items-center">
-                      <i class="bx bx-user"></i>&nbsp;50
-                      &nbsp;&nbsp;
-                      <i class="bx bx-heart"></i>&nbsp;65
-                    </div>
+                    
                   </div>
                 </div>
               </div>
