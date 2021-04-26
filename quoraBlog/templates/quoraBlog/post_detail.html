@@ -115,6 +115,17 @@
             <br/>
             {{ comm.content }}
             <br>
+            <!-- here comes the like and report buttons -->
+            <div class="row" style="margin-left: 0px;">
+            <form action="{% url 'like_post' post.pk %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" name="post_id" value="{{ post.id }}" style="color: white; background-color: rgb(30, 90, 255); border-style: none; border-radius: 4px;">Like</button>
+            </form>
+            <form action="{% url 'report_post' post.pk %}" method="POST" style="margin-left: 5px;">
+              {% csrf_token %}
+              <button id="report" type="submit" name="report" value="{{ post.id }}" style="color: white; background-color: red; border-style: none; border-radius: 4px;">report</button>
+            </form>
+          </div>
             <hr>
           {% endfor %}
         {% endif %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Post, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
@@ -8,7 +8,7 @@ import requests
 from django.contrib import messages
 from .forms import TextInput, AddComment
 from users.forms import UserRegisteration, UserUpdateForm, ProfileUpdateForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 
 def login_page(request):
@@ -153,3 +153,13 @@ class AddCommentView(CreateView):
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
         return super().form_valid(form)
+
+def LikeView(req, pk):
+    post = get_object_or_404(Post, id=req.POST.get('post_id'))
+    post.likes.add(req.user)
+    return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
+
+def ReportView(req, pk):
+    post = get_object_or_404(Post, id=req.POST.get('report'))
+    post.reports.add(req.user)
+    return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
