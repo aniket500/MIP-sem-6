@@ -110,6 +110,13 @@ def txt_sum(req):
         form = TextInput()
     return render(req, 'txt_sum.html',{'form': form, 'summary':summary})
 
+def myBlogs(req):
+    print(type(Post.objects.filter(author=req.user)))
+    context = {
+        'myBlogs': Post.objects.filter(author=req.user),
+    }
+    return render(req, 'myBlogs.html', context)
+
 class PostCreateView(LoginRequiredMixin, CreateView):
     model= Post
     fields =['title', 'content','group']
