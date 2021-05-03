@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Somaiya Quora</title>
+  <title>Somaiya Talks</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -73,19 +73,66 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          {% for comm in commList %}
+          
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item" style="margin-bottom: 12px;">
-              <a href={{comm}}>
-                <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
+              <a href={{commList.0}}>
+                <img src="{% static 'img/cmpn.jpeg' %}" style="height: 210px; width: 350px;" class="img-fluid" alt="...">
               <div class="course-content">
-                  <h4>{{ comm }}</h4>
+                  <h4>{{ commList.0 }}</h4>
               </div>
               </a>
             </div>
           </div>
-          {% endfor %}
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="course-item" style="margin-bottom: 12px;">
+              <a href={{commList.1}}>
+                <img src="{% static 'img/infotech.png' %}" style="height: 210px; width: 350px;" class="img-fluid" alt="...">
+              <div class="course-content">
+                  <h4>{{ commList.1 }}</h4>
+              </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="course-item" style="margin-bottom: 12px;">
+              <a href={{commList.2}}>
+                <img src="{% static 'img/mech.jpeg' %}" style="height: 210px; width: 350px;" class="img-fluid" alt="...">
+              <div class="course-content">
+                  <h4>{{ commList.2 }}</h4>
+              </div>
+              </a>
+            </div>
+          </div>
+          
+
+          
         </div>
+        <br>
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="course-item" style="margin-bottom: 12px;">
+              <a href={{commList.3}}>
+                <img src="{% static 'img/extc_pic.jpeg' %}" style="height: 210px; width: 350px;" class="img-fluid" alt="...">
+              <div class="course-content">
+                  <h4>{{ commList.3 }}</h4>
+              </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="course-item" style="margin-bottom: 12px;">
+              <a href={{commList.4}}>
+                <img src="{% static 'img/etrx_pic.jpeg' %}" style="height: 210px; width: 350px;" class="img-fluid" alt="...">
+              <div class="course-content">
+                  <h4>{{ commList.4 }}</h4>
+              </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        
 
         <!-- <div class="row" data-aos="zoom-in" data-aos-delay="100">
           {% for post in allPosts %}
@@ -128,7 +175,7 @@
       <div class="row">
 
         <div class="col-lg-3 col-md-6 footer-contact">
-          <h3>Somiya Quora</h3>
+          <h3>Somaiya Talks</h3>
           <p>
             KJ Somaiya College of Engineering <br>
             Ghatkopar, Mumbai<br>
