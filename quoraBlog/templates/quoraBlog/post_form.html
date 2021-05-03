@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Somaiya Quora</title>
+  <title>Somaiya Talks</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -44,6 +44,8 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           {% if user.is_authenticated %}
+          <li><a href="{% url 'home' %}">Home</a></li>
+
             <li><a href="{% url 'profile' %}">Profile</a></li>
             <li><a href="{% url 'blogs' %}">Blogs</a></li>
             <li class="active"><a href="{% url 'post-create' %}">Post</a></li>
@@ -66,23 +68,31 @@
     <div class="breadcrumbs">
       <div class="container">
         <h2>Create a Post</h2>
+        <h3>Type your thoghts out!</h3>
         <!-- <p>The blogs relevant to this community! </p> -->
       </div>
     </div><!-- End Breadcrumbs -->
+    <centre>
 
     <div style="padding: 80px;">
+
         <form action="" method="POST">
             {% csrf_token %}
-            <fieldset>
+
+            <fieldset style="text-align: center;">
                 <legend>
                     Type it out!
                     <br>
                 </legend>
                 {{ form.as_p }}
             </fieldset>
+            <br>
+            <centre>
+
             <div>
-                <button type="submit">Post</button>
+                <button type="submit" style="margin-left: 620px;">Post</button>
             </div>
+            </centre>
         </form>
         
     </div>
@@ -97,7 +107,7 @@
       <div class="row">
 
         <div class="col-lg-3 col-md-6 footer-contact">
-          <h3>Somiya Quora</h3>
+          <h3>Somaiya Talks</h3>
           <p>
             KJ Somaiya College of Engineering <br>
             Ghatkopar, Mumbai<br>

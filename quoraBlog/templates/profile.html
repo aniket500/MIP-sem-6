@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Somaiya Quora</title>
+  <title>Somaiya Talks</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -42,6 +42,8 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+
           <li><a href="{% url 'profile' %}">Profile</a></li>
             <li><a href="{% url 'blogs' %}">Blogs</a></li>
             <li><a href="{% url 'post-create' %}">Post</a></li>
@@ -72,8 +74,8 @@
           <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
             <img src="{% static 'img/about.jpg' %}" class="img-fluid" alt="">
           </div>
-         <!-- <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-            <h3>Who is {{ user.username }}?</h3>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+           <!-- <h3>Who is {{ user.username }}?</h3>
             <p class="font-italic">
               Name- {{ user.profile.user }}<br>
               Email- {{ user.email }}
@@ -91,11 +93,13 @@
               <div class="form-group">
                 <button class="btn btn-secondary btn-sm mt-1 mb-1" type="submit">Update Information</button>
               </div>
+              
             </form>
             {% endblock content %}
 
 
             
+          </div>
           </div>
         </div>
       </div>
@@ -129,7 +133,7 @@
       <div class="row">
 
         <div class="col-lg-3 col-md-6 footer-contact">
-          <h3>Somiya Quora</h3>
+          <h3>Somaiya Talks</h3>
           <p>
             KJ Somaiya College of Engineering <br>
             Ghatkopar, Mumbai<br>

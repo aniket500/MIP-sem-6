@@ -49,7 +49,7 @@ def profile(request):
 def blogs(request):
     context = {
         'allPosts': Post.objects.all(),
-        'commList': ['Computer', 'Information-Technology', 'Mechanical', 'Electronics-TeleCom', 'Electronics'],
+        'commList': ['Computer Engineering', 'Information-Technology', 'Mechanical', 'Electronics & TeleCom', 'Electronics'],
     }
     return render(request, 'blogs.html', context)
 
@@ -126,6 +126,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
+    
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
@@ -156,6 +157,7 @@ class AddCommentView(CreateView):
     form_class = AddComment
     template_name = 'addComment.html'
     success_url = reverse_lazy('blogs')
+
 
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
