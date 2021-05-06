@@ -133,16 +133,19 @@
                     <img src="{% static 'img/fb.png' %}" alt="fbicon">
                     <img src="{% static 'img/gp.png' %}" alt="gpicon">
                 </div> -->
+                {% if form.errors %}
+                    <p>username or password not correct</p>
+                {% endif %}
                 {% block content %}
                 <form id="login" method="POST" class="input-group">
                     {% csrf_token%}
                     <div type="text" class="input-field" placeholder="User Id" required>
-                        {{ form.username.label}}
-                        {{form.username}}
+                        {{ form.username.label }}
+                        {{ form.username }}
                     </div>
                     <div type="text" class="input-field" placeholder="Enter Password" required>
-                        {{form.password.label}}
-                        {{form.password}}
+                        {{ form.password.label }}
+                        {{ form.password }}
                     </div>
                     <input type="checkbox" class="check-box"><span>Remember Password</span>
                     <button type="submit" class="submit-btn">Login</button>                    

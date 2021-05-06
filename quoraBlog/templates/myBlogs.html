@@ -47,6 +47,7 @@
           <li><a href="{% url 'profile' %}">Profile</a></li>
             <li><a href="{% url 'blogs' %}">Blogs</a></li>
             <li><a href="{% url 'post-create' %}">Post</a></li>
+            <li><a href="{% url 'my-blogs' %}">MyBlogs</a></li>
             <li ><a href="{% url 'txt_sum' %}">TxtSum</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
 
@@ -73,6 +74,10 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          {% ifequal length 0 %}
+            <p>You have not posted any blogs 🤦</p>
+            <p style="margin-left: 12px;"> Create a post >>> <a href="{% url 'post-create' %}">here</a> <<< </p>
+          {% endifequal %}
           {% for blog in myBlogs %}
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item" style="margin-bottom: 12px;">

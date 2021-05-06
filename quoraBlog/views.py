@@ -42,9 +42,10 @@ def profile(request):
         p_form=ProfileUpdateForm(instance=request.user.profile)
     context ={
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'totalBlogs': len(list(Post.objects.filter(author=request.user))),
     }
-    return render(request, 'profile.html',context)
+    return render(request, 'profile.html', context)
 
 def blogs(request):
     context = {
@@ -111,9 +112,9 @@ def txt_sum(req):
     return render(req, 'txt_sum.html',{'form': form, 'summary':summary})
 
 def myBlogs(req):
-    print(type(Post.objects.filter(author=req.user)))
     context = {
         'myBlogs': Post.objects.filter(author=req.user),
+        'length': len(Post.objects.filter(author=req.user)),
     }
     return render(req, 'myBlogs.html', context)
 
