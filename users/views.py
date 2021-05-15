@@ -24,6 +24,11 @@ def register(req):
             username = form.cleaned_data.get('username')
             messages.success(req, f'Account created for {username}!')
             return redirect('login')
+        elif(str(form.cleaned_data.get('email')).find('somaiya.edu') == -1):
+            messages.error(req, 'Register with somaiya emailId')
+        else:
+            messages.error(req, 'password not correct\n password must contain an upper case\none number')
+            return redirect('register')
     else:
         form = UserRegisteration()
     return render(req, 'register.html', {'form': form})

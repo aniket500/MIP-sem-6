@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from users import views as user_views
-from .views import PostCreateView, PostDetailView, PostUpdateView, PostDeleteView, AddCommentView, LikeView, ReportView
+from .views import PostCreateView, PostDetailView, PostUpdateView, PostDeleteView, AddCommentView, LikeView, ReportView, myBlogs
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -10,6 +10,7 @@ urlpatterns = [
     path('register/', user_views.register, name='register'),
     path('test/', views.login, name='login'),
     path('txt_sum/', views.txt_sum, name='txt_sum'),
+    path('my-blogs/', views.myBlogs, name='my-blogs'),
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     path('post/<int:pk>/update', PostUpdateView.as_view(), name='post-update'),

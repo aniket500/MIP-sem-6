@@ -133,6 +133,9 @@
                     <img src="{% static 'img/fb.png' %}" alt="fbicon">
                     <img src="{% static 'img/gp.png' %}" alt="gpicon">
                 </div> -->
+                {% for msg in messages %}
+                    {{ msg }}
+                {% endfor %}
                 {% block content %}
                 <form id="login" method="POST" class="input-group">
                     {% csrf_token %}

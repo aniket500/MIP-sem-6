@@ -47,6 +47,7 @@
           <li><a href="{% url 'profile' %}">Profile</a></li>
             <li><a href="{% url 'blogs' %}">Blogs</a></li>
             <li><a href="{% url 'post-create' %}">Post</a></li>
+            <li><a href="{% url 'my-blogs' %}">MyBlogs</a></li>
             <li ><a href="{% url 'txt_sum' %}">TxtSum</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
 
@@ -113,7 +114,11 @@
         <div class="row counters">
 
           <div class="col-lg-3 col-6 text-center">
+<<<<<<< HEAD
             <span data-toggle="counter-up">{{User.Post.count}} </span>
+=======
+            <span data-toggle="counter-up">{{ totalBlogs }}</span>
+>>>>>>> bd19f2c9d5ab5e2508d6b27f75daea88751105fd
             <p>Number of blogs posted</p>
           </div>
 

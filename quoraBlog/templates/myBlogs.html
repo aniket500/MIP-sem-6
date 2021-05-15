@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Somaiya Talks</title>
+  <title>Somaiya Quora</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -43,17 +42,16 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          {% if user.is_authenticated %}
-            <li><a href="{% url 'profile' %}">Profile</a></li>
+          <li><a href="{% url 'home' %}">Home</a></li>
+
+          <li><a href="{% url 'profile' %}">Profile</a></li>
             <li><a href="{% url 'blogs' %}">Blogs</a></li>
-            <li class="active"><a href="{% url 'post-create' %}">Post</a></li>
+            <li><a href="{% url 'post-create' %}">Post</a></li>
             <li><a href="{% url 'my-blogs' %}">MyBlogs</a></li>
             <li ><a href="{% url 'txt_sum' %}">TxtSum</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
-          {% else %}
-            <li><a href="{% url 'login' %}" >Login</a></li>
-            <li><a href="{% url 'register' %}" >Register</a></li>
-          {% endif %}
+
+
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -66,31 +64,46 @@
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
       <div class="container">
-        <h2>Delete Post</h2>
-        <!-- <p>The blogs relevant to this community! </p> -->
+        <h2>Blogs</h2>
+        <p>Blogs you created</p>
       </div>
     </div><!-- End Breadcrumbs -->
-<center>
-    <div style="padding: 80px;">
-        <form action="" method="POST">
-            {% csrf_token %}
-            <fieldset>
-                <legend>
-                    <h2>
-                        Are you sure you want to delete the post "{{ object.title }}"?
-                    </h2>
-                </legend>
-            </fieldset>
 
-            <div style="padding: 80px;">
-                <button class="btn btn-danger btn-sm mt-1 mb-1" type="submit">Delete</button>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-detail' object.id%}">Cancel</a>
+    <!-- ======= Courses Section ======= -->
+    <section id="courses" class="courses">
+      <div class="container" data-aos="fade-up">
 
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+          {% ifequal length 0 %}
+            <p>You have not posted any blogs 🤦</p>
+            <p style="margin-left: 12px;"> Create a post >>> <a href="{% url 'post-create' %}">here</a> <<< </p>
+          {% endifequal %}
+          {% for blog in myBlogs %}
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="course-item" style="margin-bottom: 12px;">
+              <img src="{% static 'img/course-1.jpg' %}" class="img-fluid" alt="...">
+              <div class="course-content">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4>{{ blog.group }}</h4>
+                </div>
+
+                <h3><a href="{% url 'post-detail' blog.id %}">{{ blog.title }}</a></h3>
+                <p>{{ blog.content }}</p>
+                <div class="trainer d-flex justify-content-between align-items-center">
+                  <div class="trainer-profile d-flex align-items-center">
+                    <img src="{% static 'img/trainer-1.jpg' %}" class="img-fluid" alt="">
+                    <span>{{ blog.author }}</span>
+                  </div>
+                  
+                </div>
+              </div>
             </div>
-        </form>
-        
-    </div>
-</center>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section><!-- End Courses Section -->
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -101,7 +114,7 @@
       <div class="row">
 
         <div class="col-lg-3 col-md-6 footer-contact">
-          <h3>Somaiya Talks</h3>
+          <h3>Somiya Quora</h3>
           <p>
             KJ Somaiya College of Engineering <br>
             Ghatkopar, Mumbai<br>
@@ -114,8 +127,8 @@
         <div class="col-lg-2 col-md-6 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Profile</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href={{home}}>Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href={{profile}}>Profile</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#">Blogs</a></li>
             <li><i class="bx bx-chevron-right"></i> <a href="#">Logout</a></li>
           </ul>
