@@ -72,17 +72,18 @@
 
         <div class="row">
           <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-            <img src="{% static 'img/about.jpg' %}" class="img-fluid" alt="">
+            &nbsp;&nbsp;&nbsp;
+            <img src="{% static 'img/default.png' %}" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-           <!-- <h3>Who is {{ user.username }}?</h3>
+           <h3>Who is {{ user.username }}?</h3>
             <p class="font-italic">
               Name- {{ user.profile.user }}<br>
               Email- {{ user.email }}
             </p>
             <p class="font-italic">
               {{ user.profile.bio }}
-            </p>-->
+            </p>
             {% block content %}
             <form method="POST" enctype="multipart/form-data">
               {% csrf_token %}
@@ -112,7 +113,7 @@
         <div class="row counters">
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up">12</span>
+            <span data-toggle="counter-up">{{User.Post.count}} </span>
             <p>Number of blogs posted</p>
           </div>
 
