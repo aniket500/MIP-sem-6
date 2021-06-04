@@ -18,7 +18,7 @@
         
         .form-box{
             width: 420px;
-            height: 500px;
+            height: 550px;
             position: relative;
             margin: 6% auto;
             background: #ffffff;
@@ -129,13 +129,8 @@
                     <button type="button" class="toggle-btn" onclick="login()">Register</button>
                     <button type="button"  class="toggle-btn" onclick="register()"><a href="{% url 'login' %}"> Login</a></button>
                 </div>
-                <!-- <div class="social-icons">
-                    <img src="{% static 'img/fb.png' %}" alt="fbicon">
-                    <img src="{% static 'img/gp.png' %}" alt="gpicon">
-                </div> -->
-                {% for msg in messages %}
-                    {{ msg }}
-                {% endfor %}
+            
+                
                 {% block content %}
                 <form id="login" method="POST" class="input-group">
                     {% csrf_token %}
@@ -166,6 +161,9 @@
                     <br><br>
                     
                     {% endblock content %}
+                    {% for msg in messages %}
+                    {{ msg }}
+                    {% endfor %}
 
                     <button type="submit" class="submit-btn">Register</button>                    
                 </form>
